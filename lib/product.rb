@@ -4,14 +4,10 @@ class Product
   @@products = []
 
   def initialize(options={})
-    if (@@products.any? {|product| product.title == options[:title]})
-      raise DuplicateProductError, "'#{options[:title]}' already exists."
-    else
-      @title = options[:title]
-      @price = options[:price]
-      @stock = options[:stock]
-      @@products << self
-    end
+    @title = options[:title]
+    @price = options[:price]
+    @stock = options[:stock]
+    add_to_products
   end
 
   def self.all
@@ -32,6 +28,14 @@ class Product
 
   def purchase
     @stock -= 1
+  end
+
+  def add_to_products
+    if (@@products.any? {|product| product.title == title})
+      raise DuplicateProductError, "'#{title}' already exists."
+    else
+      @@products << self
+    end
   end
 
 end

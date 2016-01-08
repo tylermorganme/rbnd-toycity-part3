@@ -1,17 +1,11 @@
-require_relative "errors"
-
 class Customer
   attr_reader :name
 
   @@customers = []
 
   def initialize(options={})
-    if (@@customers.any? {|customer| customer.name == options[:name]})
-      raise DuplicateCustomerError, "'#{options[:name]}' already exists."
-    else
-      @name = options[:name]
-      @@customers << self
-    end
+    @name = options[:name]
+    add_to_customers
   end
 
   def self.all
@@ -24,5 +18,17 @@ class Customer
 
   def purchase(product)
     Transaction.new(self, product)
+  end
+
+  def add_to_customers
+    if (@@customers.any? {|customer| customer.name == name})
+      raise DuplicateCustomerError, "'#{name}' already exists."
+    else
+      @@customers << self
+    end
+  end
+
+  def purchases
+    Transaction.all.find_all {|transaction| transaction.customer == self}
   end
 end

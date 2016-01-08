@@ -1,0 +1,12 @@
+**How long did you spend working on this project?**
+2 Hours
+
+**What was the most rewarding challenge you conquered?
+Getting the transactions working was a bit difficult so I'd say that.
+
+**What two additional features did you build? Why?**
+- I built a purchases function to return the purchases of a particular users. I check my orders in Amazon all the time so I thought this would be a similar feature.
+- Added total_sales function to transaction. This returns the sum of prices for all transactions. It could be used for creating a sales report. I added this directly to the transaction object instead of as an instance variable because it should be constant across all transactions.
+
+**Where do you still have room to grow?**
+The object patterns in Ruby are a bit odd to me coming from other languages like VB and Javascript. I'd really like to learn more about them. It really seems like there are a lot of different ways to do things with objects.

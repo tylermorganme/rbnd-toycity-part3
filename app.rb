@@ -33,7 +33,7 @@ puts products_in_stock.include?(firehouse) # Should return false
 Customer.new(name: "Walter Latimer")
 Customer.new(name: "Julia Van Cleve")
 
-Customer.all.count # Should return 2
+puts Customer.all.count # Should return 2
 
 # Customer.new(name: "Walter Latimer")
 # Should return DuplicateCustomerError: 'Walter Latimer' already exists.
@@ -62,5 +62,18 @@ puts Transaction.all.count # Should return 2
 transaction2 = Transaction.find(2)
 puts transaction2.product == nanoblock # Should return true
 
-walter.purchase(firehouse)
+# walter.purchase(firehouse)
 # Should return OutOfStockError: 'LEGO Firehouse Headquarter' is out of stock.
+
+# Additional Feature Testing
+puts walter.purchases.count # Should return 2
+
+walter.purchase(nanoblock)
+
+puts walter.purchases.count # Should return 3
+
+julia = Customer.find_by_name("Julia Van Cleve")
+
+puts julia.purchases.count # Should return 0
+
+puts Transaction.total_sales # Should return 149.97

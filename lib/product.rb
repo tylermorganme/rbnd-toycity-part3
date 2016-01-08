@@ -30,4 +30,8 @@ class Product
     @stock > 0
   end
 
+  def purchase
+    @stock -= 1
+  end
+
 end
